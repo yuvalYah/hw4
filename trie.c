@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "trie.h"
 
 Trie *newTrie()
@@ -91,10 +92,8 @@ void addStrToTrie(char* str, int len, int startIndex , Trie *t)
 
 void printlec(Node *root, char *str, int level)
 {
-    //Stop condition:
     if (root == NULL)
         return;
-    //
 
     if (root->isLeaf == true) //Check whether this node is a leaf
     {

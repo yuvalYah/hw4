@@ -2,7 +2,7 @@ CC=gcc
 AR=ar
 FLAGS=-Wall -g
 
-all:frequency
+all: frequency
 frequency: main.o trie.o
 	$(CC) $(FLAGS) main.o trie.o -o frequency
 main.o: main.c trie.h
@@ -13,4 +13,4 @@ trie.o: trie.c trie.h
 
 
 clean:
-	rm -f *.o
+	rm -f *.o *.txt frequency
