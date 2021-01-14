@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     int i = 0;
     int j=0;
     int k =0 ;
-   int maxS=0;
+    int maxS=0;
     while (scanf("%c", (str+i)) == 1)
     {
         if(str[i] != ' ' && str[i] !='\0' && str[i] !='\n'){
