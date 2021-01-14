@@ -99,7 +99,9 @@ void printlec(Node *root, char *str, int level)
     if (root->isLeaf == true) //Check whether this node is a leaf
     {
         str[level] = '\0';
-        printf("%s\t%ld\n", str, root->count); //Print the String contains the word until this node
+        // printf("%s\t%ld\n", str, root->count); //Print the String contains the word until this node
+        printf("%s %ld\n", str, root->count); //Print the String contains the word until this node
+
     }
 
     int i;
@@ -135,7 +137,9 @@ void printlecR(Node *root, char *str, int level)
     if (root->isLeaf == true)
     {
         str[level] = '\0';
-        printf("%s\t%ld\n", str, root->count);
+        // printf("%s\t%ld\n", str, root->count);
+        printf("%s %ld\n", str, root->count);
+
     }
 
 }

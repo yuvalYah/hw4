@@ -21,12 +21,12 @@ int main(int argc, char *argv[]){
    int maxS=0;
     while (scanf("%c", (str+i)) == 1)
     {
-        printf("%c",*(str+i));
+        // printf("%c",*(str+i));
         if(str[i] != ' ' && str[i] !='\0' && str[i] !='\n'){
         
             if(j==size-2){
                 size =size*2;
-                printf("%d",size);
+                // printf("%d",size);
                                 char *temp =(char*)malloc(sizeof(char)*size);
                 if(temp == NULL) printf("Failed to reallocate new memory space..");
                 if (!temp) {
