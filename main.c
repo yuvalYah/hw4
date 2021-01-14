@@ -44,7 +44,6 @@ int main(int argc, char *argv[]){
             j++;
         }
         else if(str[i] == ' ' || str[i] =='\0' || str[i] =='\n'){
-            //printf("%s\n" ,str+k);
             if(j > maxS) maxS =j;
             addStrToTrie(str+k ,i , k , trie);
             j=0;
