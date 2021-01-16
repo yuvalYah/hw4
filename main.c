@@ -54,11 +54,11 @@ int main(int argc, char *argv[]){
                 }
             }
             j++;
-        }
-        //printf("%s\n",str);
-  
+        }  
     }
     char cha[maxS];
+    cha[0]='\0';
+    //printf("%s",cha);
     if (argc == 2) //if there is 'r' parameter, print reverse.
     {
         printlecR(trie->root,cha,0);
