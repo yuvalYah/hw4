@@ -11,6 +11,7 @@ typedef struct Node {
     long unsigned int count;
 	struct Node* children[NUM_LETTERS];
     boolean isLeaf;                     //indicate whether this node is a end of word
+    boolean isRoot;
 } Node;
 
 typedef struct Trie

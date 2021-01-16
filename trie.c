@@ -7,7 +7,7 @@ Trie *newTrie()
 {
     Trie *new_trie = (Trie *)malloc(sizeof(Trie)); //Memory allocate
     new_trie->root = newNode(0);                   //Build node with no data for the root
-
+    new_trie->root->isRoot = true;
     return new_trie;
 }
 
@@ -17,6 +17,7 @@ Node *newNode(char l)
     new_node->letter = l;
     new_node->count = 0;
     new_node->isLeaf = false;
+    new_node->isRoot = false;
     for (int i = 0; i < NUM_LETTERS; i++) //Initialize the children array
     {
         new_node->children[i] = NULL;
@@ -56,7 +57,7 @@ void printlec(Node *root, char *str, int level)
     if (root == NULL)
         return;
 
-    if (root->isLeaf == true) //check if this node is a leaf
+    if (root->isLeaf == true && root->isRoot=false) //check if this node is a leaf
     {
         str[level] = '\0';
         printf("%s %ld\n", str, root->count); //print the String contains the word
