@@ -19,16 +19,31 @@ int main(int argc, char *argv[]){
     }
     int j=0;//the lenght of the word
     int maxS=0;//the max lenght of word
+
     while (scanf("%c", (str+j)) == 1)//enter to the str
     {
-        if(str[j] != ' ' && str[j] !='\0' && str[j] !='\n'){
-            if(j==size-2){
+        //printf("%c",*(str+j));
+        if(str[j] == EOF || str[j] == ' ' || str[j] =='\0' || str[j] =='\n'){//when the word is and
+            if(j > maxS) maxS = j;
+//            printf("%s",str);
+            addStrToTrie(str ,j, trie);//send the word to the trie
+            j=0;
+            free(str);//free the string
+            str = (char *)malloc(sizeof(char) * size);//init new
+            if(str == NULL) {
+                printf("Failed to reallocate new memory space..");  
+                return 1;
+            }
+
+        }
+        else{        
+            if(j==size-1){
                 size =size*2;
                 char *temp =(char*)malloc(sizeof(char)*size);
                 if(temp == NULL) {
                     printf("Failed to reallocate new memory space..");
                     return 1;
-                    }
+                }
                 else {
                     strcpy(temp , str);
                     free(str);
@@ -40,18 +55,8 @@ int main(int argc, char *argv[]){
             }
             j++;
         }
-        else if(str[j] == ' ' || str[j] =='\0' || str[j] =='\n'){//when the word is and
-            if(j > maxS) maxS = j;
-            addStrToTrie(str ,j, trie);//send the word to the trie
-            j=0;
-            free(str);//free the string
-            str = (char *)malloc(sizeof(char) * size);//init new
-            if(str == NULL) {
-                printf("Failed to reallocate new memory space..");  
-                return 1;
-            }
-
-        }
+        //printf("%s\n",str);
+  
     }
     char cha[maxS];
     if (argc == 2) //if there is 'r' parameter, print reverse.
