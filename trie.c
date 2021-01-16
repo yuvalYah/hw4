@@ -25,65 +25,25 @@ Node *newNode(char l)
     return new_node;
 }
 
-// void readFromTheText()
-// {
-//     int n;
-//     char *text;
-//     printf("Enter limit of the text: ");
-//     scanf("%d",&n);
-//     /*allocate memory dynamically*/
-//     Trie *trie = newTrie(); //Initialize new trie.
-//     text=(char*)malloc(n*sizeof(char));
-//     printf("Enter text: ");
-
-//     scanf(" "); /*clear input buffer*/
-//     gets(text);
-
-//     printf("Inputted text is: %s\n",text);
-//     int i = 0;
-//     int k =0 ;
-//     while(text[i] !='\0')
-//     {
-       
-//         while(text[i] == ' ' || text[i] =='\0' || text[i] =='\n')
-//         {
-//             i++;
-//             printf("%c",text[i]);
-
-//         }
-//         addStrToTrie(text[k] ,i , k , trie);
-//         //addStrToTrie(text[k] , len word=i ,start ind =k)
-//         k=i;
-//         //if ( i!=0 && text[i-1] == ' ' || text[i-1] =='\0' || text[i-1] =='\n')) k=i;
-//         i++;
-
-//     }
-//     char ch[100];
-//     printlec(trie,ch,0);
-// /*Free Memory*/
-//     free(text);  
-//     freeTrie(trie); //free memory
-// }
-void addStrToTrie(char* str, int len, int startIndex , Trie *t)
+void addStrToTrie(char* str, int len , Trie *t)
 {
-    //printf(" i= %d ,k= %d",len,startIndex);
     char charIndex=' ';
-    int size = len - startIndex;
     Node *node = t->root;
-    for(int i = 0 ; i < size ; i++)
+    for(int i = 0 ; i < len ; i++)
     {
         charIndex= *(str+i);
+        //if the char in big letter --> add +32 the ascii value and make hime to small letter
         if ((charIndex >= 'A' && charIndex<='Z') || (charIndex >= 'a' && charIndex<='z'))
         {
             if (charIndex >= 'A' && charIndex<='Z') 
             {
                 charIndex += MAKE_SMALL_CHAR;
             }
-            if (node->children[charIndex - 'a'] == NULL){
+            if (node->children[charIndex - 'a'] == NULL){//font have word here
                 Node *new = newNode(charIndex);
                 node->children[charIndex - 'a'] = new;
             }
-            node= node->children[charIndex-'a'];
+            node= node->children[charIndex-'a'];//moving on the trie
         }
     }
     node->isLeaf = true;
@@ -95,16 +55,15 @@ void printlec(Node *root, char *str, int level)
     if (root == NULL)
         return;
 
-    if (root->isLeaf == true) //Check whether this node is a leaf
+    if (root->isLeaf == true) //check if this node is a leaf
     {
         str[level] = '\0';
-        // printf("%s\t%ld\n", str, root->count); //Print the String contains the word until this node
-        printf("%s %ld\n", str, root->count); //Print the String contains the word until this node
+        printf("%s %ld\n", str, root->count); //print the String contains the word
 
     }
 
     int i;
-    for (i = 0; i < NUM_LETTERS; i++) //Running from the lower to upper
+    for (i = 0; i < NUM_LETTERS; i++) //running from the lower to upper
     {
 
         if (root->children[i] != NULL)
@@ -136,18 +95,18 @@ void printlecR(Node *root, char *str, int level)
     if (root->isLeaf == true)
     {
         str[level] = '\0';
-        // printf("%s\t%ld\n", str, root->count);
         printf("%s %ld\n", str, root->count);
 
     }
 
 }
+//free the alloce from the memory
 void freeTrie(Trie *trie)
 {
     freeNode(trie->root);
     free(trie);
 }
-
+//free the nodes
 void freeNode(Node *node)
 {
     int i;

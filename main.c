@@ -12,40 +12,43 @@ int main(int argc, char *argv[]){
     int size = 200;   
     Trie *trie = newTrie(); //Initialize new trie.
     char *str = (char*)malloc(sizeof(char)*size);
-    if(str == NULL) printf("Failed to reallocate new memory space.."); 
-    int i = 0;
-    int j=0;
-    int k =0 ;
-    int maxS=0;
-    while (scanf("%c", (str+i)) == 1)
+    if(str == NULL){
+        printf("Failed to reallocate new memory space.."); 
+        return 1;
+    }
+    int j=0;//the lenght of the word
+    int maxS=0;//the max lenght of word
+    while (scanf("%c", (str+j)) == 1)//enter to the str
     {
-        if(str[i] != ' ' && str[i] !='\0' && str[i] !='\n'){
-        
+        if(str[j] != ' ' && str[j] !='\0' && str[j] !='\n'){
             if(j==size-2){
                 size =size*2;
                 char *temp =(char*)malloc(sizeof(char)*size);
-                if(temp == NULL) printf("Failed to reallocate new memory space..");
-                if (!temp) {
+                if(temp == NULL) {
+                    printf("Failed to reallocate new memory space..");
+                    return 1;
+                    }
+                else {
                     strcpy(temp , str);
                     free(str);
                     str = (char*)malloc(sizeof(char)*size);
                     strcpy(str, temp);
                     free(temp);
-
                     break;
                 }
             }
-            i++;
             j++;
         }
-        else if(str[i] == ' ' || str[i] =='\0' || str[i] =='\n'){
+        else if(str[j] == ' ' || str[j] =='\0' || str[j] =='\n'){//when the word is and
             if(j > maxS) maxS = j;
-            addStrToTrie(str+k ,i , k , trie);
+            addStrToTrie(str ,j, trie);//send the word to the trie
             j=0;
-            k=i;
-            free(str);
-            str = (char *)malloc(sizeof(char) * size);
-            if(str == NULL) printf("Failed to reallocate new memory space..");  
+            free(str);//free the string
+            str = (char *)malloc(sizeof(char) * size);//init new
+            if(str == NULL) {
+                printf("Failed to reallocate new memory space..");  
+                return 1;
+            }
 
         }
     }
@@ -58,57 +61,8 @@ int main(int argc, char *argv[]){
     {
         printlec(trie->root,cha,0);
     }
-
     free(str);  
     freeTrie(trie); //free memory
 
     return 1;
 }
-/* #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "trie.h"
-int main(){
-
-    //readFromTheText();
-
-   // int n;
-  //  char *text;
-
-    Trie *trie = newTrie(); //Initialize new trie.
-   // text=(char*)malloc(n*sizeof(char));
-    char *str = (char *)malloc(sizeof(char) * 2);
-    int size = 0;
-   // printf("Enter text: ");
-
-   // scanf(" "); clear input buffer
-//    gets(text);
-
-  //  printf("Inputted text is: %s\n",text);
-    int i = 0;
-    int k =0 ;
-    //char s[strlen(text)];
-
-    printf("text[i] = %c ,",s[i]);
-    while (scanf("%c", &ch) == 1)
-    {
-       
-        while(text[i] == ' ' || text[i] =='\0' || text[i] =='\n')
-        {
-            i++;
-            printf("text[i] = %c ,",text[i]);
-
-        }
-        addStrToTrie(text[k] ,i , k , trie);
-        k=i;
-        i++;
-
-    }
-    char ch[100];
-    printlec(trie,ch,0);
-    free(text);  
-    freeTrie(trie); //free memory
-
-    return 1;
-}*/
