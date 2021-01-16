@@ -57,7 +57,7 @@ void printlec(Node *root, char *str, int level)
     if (root == NULL)
         return;
 
-    if (root->isLeaf == true && root->isRoot=false) //check if this node is a leaf
+    if (root->isLeaf == true && root->isRoot==false) //check if this node is a leaf
     {
         str[level] = '\0';
         printf("%s %ld\n", str, root->count); //print the String contains the word
