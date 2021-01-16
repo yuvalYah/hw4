@@ -50,6 +50,7 @@ void addStrToTrie(char* str, int len , Trie *t)
     node->count++;
 }
 
+//this func print all the word in order the letters
 void printlec(Node *root, char *str, int level)
 {
     if (root == NULL)

@@ -11,6 +11,5 @@ trie.o: trie.c trie.h
 	$(CC) $(FLAGS) -c trie.c  -o trie.o
 
 
-
 clean:
 	rm -f *.o *.txt frequency

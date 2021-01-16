@@ -3,6 +3,7 @@
 #include <string.h>
 #include "trie.h"
 
+//main pogram
 int main(int argc, char *argv[]){
     if (argc > 2 || (argc == 2 && strcmp(argv[1], "r") != 0))
     {
