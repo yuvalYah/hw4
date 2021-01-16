@@ -94,7 +94,7 @@ void printlecR(Node *root, char *str, int level)
         }
     }
 
-    if (root->isLeaf == true)
+    if (root->isLeaf == true && root->isRoot==false)
     {
         str[level] = '\0';
         printf("%s %ld\n", str, root->count);

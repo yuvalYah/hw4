@@ -10,8 +10,8 @@ typedef struct Node {
 	char letter;
     long unsigned int count;
 	struct Node* children[NUM_LETTERS];
-    boolean isLeaf;                     //indicate whether this node is a end of word
-    boolean isRoot;
+    boolean isLeaf;//indicate whether this node is a end of word
+    boolean isRoot;//if the node is root or not
 } Node;
 
 typedef struct Trie
