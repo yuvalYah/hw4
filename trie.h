@@ -1,7 +1,6 @@
 #define NUM_LETTERS 26
 #define MAKE_SMALL_CHAR 32
-typedef enum
-{
+typedef enum{
     false = 0,
     true = 1
 } boolean;
@@ -14,8 +13,7 @@ typedef struct Node {
     boolean isRoot;//if the node is root or not
 } Node;
 
-typedef struct Trie
-{
+typedef struct Trie{
     Node *root;
 } Trie;
 

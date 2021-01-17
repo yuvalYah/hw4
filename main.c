@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
         printf("Invalid parameters!\n");
         return 1;
     }
-    int size = 200;   
+    int size = 100;   
     Trie *trie = newTrie(); //Initialize new trie.
     char *str = (char*)malloc(sizeof(char)*size);
     if(str == NULL){
@@ -20,12 +20,10 @@ int main(int argc, char *argv[]){
     int j=0;//the lenght of the word
     int maxS=0;//the max lenght of word
 
-    while (scanf("%c", (str+j)) == 1)//enter to the str
-    {
-        //printf("%c",*(str+j));
-        if(str[j] == EOF || str[j] == ' ' || str[j] =='\0' || str[j] =='\n'){//when the word is and
+    while (scanf("%c", (str+j)) == 1){/*enter to the str*/
+        //when the word is and
+        if(str[j] == EOF || str[j] == ' ' || str[j] =='\0' || str[j] =='\n'){
             if(j > maxS) maxS = j;
-//            printf("%s",str);
             addStrToTrie(str ,j, trie);//send the word to the trie
             j=0;
             free(str);//free the string
@@ -58,17 +56,14 @@ int main(int argc, char *argv[]){
     }
     char cha[maxS];
     cha[0]='\0';
-    //printf("%s",cha);
-    if (argc == 2) //if there is 'r' parameter, print reverse.
-    {
+    //if there is 'r' parameter, print reverse.
+    if (argc == 2) {
         printlecR(trie->root,cha,0);
     }
-    else //Otherwise
-    {
+    else {
         printlec(trie->root,cha,0);
     }
-    free(str);  
+    free(str);  //free str
     freeTrie(trie); //free memory
-
-    return 1;
+    return 0;
 }
